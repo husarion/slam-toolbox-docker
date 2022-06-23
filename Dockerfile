@@ -1,4 +1,4 @@
-FROM ros:galactic-ros-core
+FROM ros:humble-ros-core
 
 SHELL ["/bin/bash", "-c"]
 
@@ -11,3 +11,6 @@ RUN apt update && apt install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+WORKDIR /maps
+
+RUN echo ". /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
