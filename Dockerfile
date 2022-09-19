@@ -13,6 +13,8 @@ RUN apt update && apt install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+COPY ./slam_params /slam_params
+
 WORKDIR /maps
 
 RUN echo ". /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
