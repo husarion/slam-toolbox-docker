@@ -4,8 +4,6 @@ FROM ros:$ROS_DISTRO-ros-core
 
 SHELL ["/bin/bash", "-c"]
 
-ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-
 RUN apt update && apt install -y \
         ros-$ROS_DISTRO-rmw-fastrtps-cpp \
         ros-$ROS_DISTRO-slam-toolbox && \
@@ -16,5 +14,7 @@ RUN apt update && apt install -y \
 COPY ./slam_params /slam_params
 
 WORKDIR /maps
+
+ENV RMW_IMPLEMENTATION=rmw_fastrtps_cpp
 
 RUN echo ". /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
