@@ -7,12 +7,14 @@ SHELL ["/bin/bash", "-c"]
 RUN apt update && apt upgrade -y && apt install -y \
         ros-$ROS_DISTRO-rmw-fastrtps-cpp \
         ros-$ROS_DISTRO-rmw-cyclonedds-cpp \
-        ros-$ROS_DISTRO-slam-toolbox && \
+        ros-$ROS_DISTRO-slam-toolbox \
+		gettext-base && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 COPY ./slam_params /slam_params
+COPY ros_entrypoint.sh /
 
 WORKDIR /maps
 
