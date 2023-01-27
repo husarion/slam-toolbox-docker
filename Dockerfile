@@ -12,4 +12,6 @@ RUN apt update && apt upgrade -y && apt install -y \
 
 COPY ./slam_params /slam_params
 
+RUN echo $(dpkg -s ros-$ROS_DISTRO-slam-toolbox | grep 'Version' | sed -r 's/Version:\s([0-9]+.[0-9]+.[0-9]+).*/\1/g') >> /version.txt
+
 RUN echo ". /opt/ros/$ROS_DISTRO/setup.bash" >> ~/.bashrc
